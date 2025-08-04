@@ -1,4 +1,4 @@
-import {Text, TextWithImage} from "../services/chat.js"
+import {Text, TextWithMedia} from "../services/chat.js"
 import express from "express"
 import apiResponse from "../helpers/api-response.js";
 import multer from "multer";
@@ -23,7 +23,7 @@ chatRouter.post('/generate-text', async (req, res) => {
     }
 })
 
-chatRouter.post('/generate-text-from-image', upload.single('image'), async (req, res) => {
+chatRouter.post('/generate-text-from-media', upload.single('file'), async (req, res) => {
     const { prompt } = req.body
     const file = req.file
 
@@ -35,7 +35,7 @@ chatRouter.post('/generate-text-from-image', upload.single('image'), async (req,
     }
 
     try {
-        const response = await TextWithImage(prompt, file)
+        const response = await TextWithMedia(prompt, file)
         
         res.json(apiResponse(response, 'Chat dengan gambar berhasil'))
     } catch (error) {   

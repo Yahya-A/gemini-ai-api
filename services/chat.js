@@ -20,12 +20,12 @@ async function Text(msg) {
     }
 }
 
-async function TextWithImage(msg, file) {
+async function TextWithMedia(msg, file) {
     try {
-        const base64Image = file.buffer.toString('base64')
+        const base64 = file.buffer.toString('base64')
         const body = [
             {text: msg},
-            {inlineData:{ mimeType: file.mimetype, data: base64Image}}
+            {inlineData:{ mimeType: file.mimetype, data: base64}}
         ]
 
         const response = await ai.models.generateContent({
@@ -41,4 +41,4 @@ async function TextWithImage(msg, file) {
     }
 }
 
-export { Text, TextWithImage }
+export { Text, TextWithMedia }
