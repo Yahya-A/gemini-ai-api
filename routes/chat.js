@@ -1,4 +1,4 @@
-import {Text, TextWithMedia} from "../services/chat.js"
+import {Text, TextWithMedia, main} from "../services/chat.js"
 import express from "express"
 import apiResponse from "../helpers/api-response.js";
 import multer from "multer";
@@ -8,14 +8,16 @@ const upload = multer();
 
 
 chatRouter.post('/generate-text', async (req, res) => {
-    const { prompt } = req.body
+    // main()
+    // res.json({ok:"ok"})
+    const { prompt, history } = req.body
 
     if (!prompt) {
         res.status(400).json(apiResponse(null, "Prompt kosong!", false))
     }
 
     try {
-        const response = await Text()
+        const response = await Text(prompt)
         
         res.json(apiResponse(response, 'Chat berhasil'))
     } catch (error) {   
