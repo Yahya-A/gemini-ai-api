@@ -37,9 +37,9 @@ chatRouter.post('/generate-text-from-media', upload.single('file'), async (req, 
     try {
         const response = await TextWithMedia(prompt, file)
         
-        res.json(apiResponse(response, 'Chat dengan gambar berhasil'))
+        res.json(apiResponse(response, 'Chat dengan media berhasil'))
     } catch (error) {   
-        res.status(500).json(apiResponse(null, 'Chat dengan gambar bermasalah!', false))
+        res.status(500).json(apiResponse(null, 'Chat dengan media bermasalah!', false))
     }
 })
 

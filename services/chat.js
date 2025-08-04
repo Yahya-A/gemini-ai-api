@@ -36,7 +36,7 @@ async function TextWithMedia(msg, file) {
         return response.text
     } catch (error) {
         console.log('Err :', error);
-        throw new Error("Chat dengan gambar bermasalah!");
+        throw new Error("Chat dengan media bermasalah!");
         
     }
 }
